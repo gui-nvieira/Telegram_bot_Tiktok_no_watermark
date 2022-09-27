@@ -1,11 +1,11 @@
-const env = require('./.env.local');
-require('dotenv/config');
 const Telegraf = require('telegraf');
+require('dotenv/config');
 const axios = require("axios");
 const {X_RAPIDAPI_KEY} = process.env;
-const bot = new Telegraf.Telegraf(env.token);
+const moduloTelegram = require ('./env.module');
 
 
+const bot = new Telegraf.Telegraf(moduloTelegram.token);
 console.log('O bot está rodando');
 
 bot.start(content => {
@@ -43,6 +43,7 @@ bot.on('text', (content, next)=>{
 
     }catch(e){
         console.log('ocorreu um erro no processo', e);
+        content.reply(`Aconteceu algum problema no programa`);
     }
 
 });
